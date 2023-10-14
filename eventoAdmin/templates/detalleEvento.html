@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detalles del Evento</title>
+</head>
+<body>
+    <h1>Detalles del Evento</h1>
+    <p>Título: {{ evento.titulo }}</p>
+    <p>Fecha: {{ evento.fecha|date:"d F Y" }}</p>
+    <p>Hora: {{evento.hora}}</p>
+    <p>Descripción: {{ evento.descripcion }}</p>
+    <a href="{% url 'lista_eventos' %}">Volver</a>
+</body>
+</html>
