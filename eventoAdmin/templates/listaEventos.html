@@ -1,20 +1,30 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
+    {% load static %}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/listaEventos.css' %}"
+    />
     <title>Lista de Eventos</title>
-</head>
-<body>
-    <h1>Lista de Eventos</h1>
-    <ul>
+  </head>
+  <body>
+    <div class="mainConta">
+      <h1>Lista de Eventos</h1>
+      
+      <ul class="listaEven">
         {% for evento in eventos %}
-            <li>
-                {{ evento.titulo }} - {{ evento.fecha|date:"d F Y" }} - {{evento.hora}} - {{ evento.nombre }}
-                <a href="{% url 'eliminar_evento' evento.id %}">Eliminar</a>
-                <a href="{% url 'detalle_evento' evento.id %}">Detalles</a>
-                <a href="{% url 'editar_evento' evento.id %}">Editar</a>
-            </li>
+        <li class="eventos">
+          {{ evento.titulo }} - {{ evento.fecha|date:"d F Y" }} -
+          {{evento.hora}} - {{ evento.nombre }}
+          <a class="btnCrud" href="{% url 'eliminar_evento' evento.id %}">❌ Eliminar</a>
+          <a class="btnCrud" href="{% url 'detalle_evento' evento.id %}">🔍 Detalles</a>
+          <a class="btnCrud" href="{% url 'editar_evento' evento.id %}">✏️ Editar</a>
+        </li>
         {% endfor %}
-    </ul>
-    <a href="{% url 'agregar_evento' %}">Agregar Evento</a>
-</body>
+      </ul>
+      <a class="btnAgregar" href="{% url 'agregar_evento' %}">❇️ Agregar Evento</a>
+    </div>
+  </body>
 </html>
