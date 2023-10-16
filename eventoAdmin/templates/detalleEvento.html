@@ -1,20 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-    {% load static %}
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'css/detalleEvento.css' %}"
-    />
-    <title>Detalles del Evento</title>
-</head>
-<body class="mainConta">
+{% extends "base.html" %} <!--Extiendo la base del html (Platilla)-->
+{% block content %} <!--Inicia el bloque extendido -->
+{% load static %} <!--Carga los estilos estaticos del css-->
+<link rel="stylesheet" type="text/css" href="{% static 'css/detalleEvento.css' %}"/>
+<div class="mainConta">
     <h1>Detalles del Evento</h1>
     <p>Título: {{ evento.titulo }}</p>
     <p>Fecha: {{ evento.fecha|date:"d F Y" }}</p>
     <p>Hora: {{evento.hora}}</p>
     <p class="desc">Descripción: {{ evento.descripcion }}</p>
     <a class="btnPrincipal" href="{% url 'lista_eventos' %}">↩️ Volver</a>
-</body>
-</html>
+</div>
+{% endblock %} <!--finaliza el bloque extendido -->

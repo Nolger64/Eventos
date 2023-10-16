@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    {% load static %} <!--Carga los estilos estaticos del css-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}"/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>inicio</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul class="navbarOp">
+          <li><a href="{% url 'inicio' %}">🏠 Inicio</a></li>
+          <li><a href="{% url 'lista_eventos' %}">📜 Lista de eventos</a></li>
+          <li><a href="">🗄 Registros</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+        {% block content %} <!--Esto es para poder usar esta pagina como base-->
+        {% endblock %} <!--Dentro de este bloque estaran las vistas de otras aplicaiones-->
+    </main>
+    <footer>
+    </footer>
+  </body>
+</html>

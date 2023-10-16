@@ -1,23 +1,16 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    {% load static %}
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'css/eliminarEvento.css' %}"
-    />
-    <title>Eliminar Evento</title>
-  </head>
-  <body class="mainConta">
-    <h1>Eliminar Evento</h1>
-    <p>¿Estás seguro de que deseas eliminar el evento "{{ evento.titulo }}"?</p>
-    <div class="btnCont">
-      <form method="post">
-        {% csrf_token %}
-        <button class="btnPrincipal" type="submit">❌ Eliminar</button>
-      </form>
-      <a class="btnPrincipal" href="{% url 'lista_eventos' %}">↩️ Cancelar</a>
-    </div>
-  </body>
-</html>
+{% extends "base.html" %} <!--Extiendo la base del html (Platilla)-->
+{% block content %} <!--Inicia el bloque extendido -->
+{% load static %} <!--Carga los estilos estaticos del css-->
+<link rel="stylesheet" type="text/css" href="{% static 'css/eliminarEvento.css' %}" />
+<div class="mainConta">
+  <h1>Eliminar Evento</h1>
+  <p>¿Estás seguro de que deseas eliminar el evento "{{ evento.titulo }}"?</p>
+  <div class="btnCont">
+    <form method="post">
+      {% csrf_token %}
+      <button class="btnPrincipal" type="submit">❌ Eliminar</button>
+    </form>
+    <a class="btnPrincipal" href="{% url 'lista_eventos' %}">↩️ Cancelar</a>
+  </div>
+</div>
+{% endblock %} <!--finaliza el bloque extendido -->
