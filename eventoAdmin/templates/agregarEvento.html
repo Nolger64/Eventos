@@ -3,15 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/agregarEvento.css' %}"
+    />
     <title>Agregar</title>
 </head>
-<body>
+<body class="mainConta">
     <h2>Agregar Nuevo Evento</h2>
-    <form method="post">
+    <form class="formEdit" method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Agregar</button>
-        <a href="{% url 'lista_eventos' %}">Volver</a>
+        <div class="btnCont">
+            <button  class="btnPrincipal" type="submit">✅ Agregar</button>
+            <a class="btnPrincipal" href="{% url 'lista_eventos' %}">↩️ Volver</a>
+        </div>
     </form>
 </body>
 </html>

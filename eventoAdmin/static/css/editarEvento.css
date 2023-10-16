@@ -41,6 +41,32 @@ body {
   color: #fff;
   transform: scale(1.2);
 }
-.btnCont {
-  display: flex;
+.formEdit {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+input{
+  margin: 0 0.8em;
+  background-color: #0f1120;
+  box-shadow: none;
+  border: none;
+  border-radius: 0.5em;
+  padding: 0.8em;
+  color: #fff;
+}
+p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+textarea {
+    margin: 0 0.8em;
+    background-color: #0f1120;
+    box-shadow: none;
+    border: none;
+    border-radius: 0.5em;
+    padding: 0.8em;
+    color: #fff;
 }

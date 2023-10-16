@@ -41,6 +41,10 @@ body {
   color: #fff;
   transform: scale(1.2);
 }
-.btnCont {
-  display: flex;
+.desc{
+    background-color: #0f1120;
+    color: #fff;
+    padding: 0.8em;
+    border-radius: 0.5em;
+    max-width: 25em;
 }

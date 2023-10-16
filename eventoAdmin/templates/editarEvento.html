@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
+    {% load static %}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/editarEvento.css' %}"
+    />
     <title>Editar Evento</title>
   </head>
-  <body>
+  <body class="mainConta">
     <h1 class="titulos">Editar Evento</h1>
-    <form method="post">
+    <form class="formEdit" method="post">
       {% csrf_token %} {{ form.as_p }}
-      <button type="submit">Guardar cambios</button>
+      <button class="btnPrincipal" type="submit">✅ Guardar cambios</button>
     </form>
   </body>
 </html>
