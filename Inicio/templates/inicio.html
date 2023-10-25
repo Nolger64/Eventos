@@ -1,5 +1,17 @@
-{% extends "base.html" %}
-
-{% block content %}
-<p>Eventos proximos: {{ total }}</p>
+{% extends "base.html" %} {% block content %} {% load static %}
+<!--Carga los estilos estaticos del css-->
+<link rel="stylesheet" type="text/css" href="{% static 'css/inicio.css' %}"/>
+<div class="perfilCont">
+  <div>
+    <img class="imgUser" src="{% static 'img/user.webp' %}" alt="" />
+  </div>
+  <div class="infoCont">
+    <p>nombre de usuario : Nolger Rodriguez</p>
+    <p>Correo: nolgerlrodriguez@uniguajira.edu.co</p>
+    <p>Instituto: Universidad de la guajira</p>
+    <p>Numero de telefono: 3126613981</p>
+    <p>Eventos por asistir: 12</p>
+    <p>Eventos proximo: Retiro espiritual - 12 diciembre 2023 - 08:00 - Sara Molina</p>
+  </div>
+</div>
 {% endblock %}
