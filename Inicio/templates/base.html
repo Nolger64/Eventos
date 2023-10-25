@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
   <head>
-    {% load static %} <!--Carga los estilos estaticos del css-->
-    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}"/>
+    {% load static %}
+    <!--Carga los estilos estaticos del css-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>inicio</title>
@@ -11,22 +12,27 @@
     <header>
       <nav>
         <ul class="navbarOp">
-          <li><a href="{% url 'inicio' %}">🏠 Inicio</a></li>
-          <li><a href="{% url 'lista_eventos' %}">📜 Lista de eventos</a></li>
-          <li><a href="">🗄 Registros</a></li>
-          {% if request.user.is_authenticated %}
-              <li><a href="{% url 'logout' %}">🚪 Cerrar Sesión</a></li>
-          {% else %}
-              <li><a href="{% url 'login' %}">👤 Iniciar Sesión</a></li>
-          {% endif %}
+          <div>
+            <li><a href="{% url 'inicio' %}">🏠 Inicio</a></li>
+          </div>
+          <div class="contNavBtn">
+            <li><a href="{% url 'lista_eventos' %}"> Lista de eventos</a></li>
+            <li><a href=""> Registros</a></li>
+            {% if request.user.is_authenticated %}
+            <li><a href="{% url 'logout' %}"> Cerrar Sesión</a></li>
+            {% else %}
+            <li><a href="{% url 'login' %}"> Iniciar Sesión</a></li>
+            {% endif %}
+          </div>
         </ul>
       </nav>
     </header>
     <main>
-        {% block content %} <!--Esto es para poder usar esta pagina como base-->
-        {% endblock %} <!--Dentro de este bloque estaran las vistas de otras aplicaiones-->
+      {% block content %}
+      <!--Esto es para poder usar esta pagina como base-->
+      {% endblock %}
+      <!--Dentro de este bloque estaran las vistas de otras aplicaiones-->
     </main>
-    <footer>
-    </footer>
+    <footer></footer>
   </body>
 </html>
