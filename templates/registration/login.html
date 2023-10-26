@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %} <!--Carga los estilos estaticos del css-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}"/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    {% if form.errors %}
+    <script>alert('Su nombre de usuario o contraseña es incorrecto')</script>
+    {% endif %}
+    <form method="post" action="{% url 'login' %}">
+      {% csrf_token %}
+      <div class="loginCont">
+        <img class="imgLogin" src="{% static 'img/login.jpg' %}" alt="">
+        <input class="inputLog" type="text" name="username" placeholder="Nombre de usuario">
+        <input class="inputLog" type="password"  name="password" placeholder="Contraseña">
+        <button class="btnLog" type="submit" class="btn">Iniciar Sesion</button>
+        <a class="btnReg" href="">Registrar me</a>
+    </div>
+    </form>
+  </body>
+</html>

@@ -6,8 +6,10 @@
     <img class="imgUser" src="{% static 'img/user.webp' %}" alt="" />
   </div>
   <div class="infoCont">
-    <p>nombre de usuario : Nolger Rodriguez</p>
-    <p>Correo: nolgerlrodriguez@uniguajira.edu.co</p>
+    <p>Nombre de usuario : {{ user.get_username }}</p>
+    <p>Nombres: {{user.first_name}}</p>
+    <p>Apellidos: {{user.last_name}}</p>
+    <p>Correo: {{ user.email }}</p>
     <p>Instituto: Universidad de la guajira</p>
     <p>Numero de telefono: 3126613981</p>
     <p>Eventos por asistir: 12</p>
