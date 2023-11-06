@@ -1,31 +1,53 @@
-from django.shortcuts import render  # Importando el módulo para renderizar plantillas
-from eventoAdmin.models import Evento  # Importando el modelo 'Evento'
-from django.contrib.auth.decorators import login_required  # Importando los decoradores de autenticación
-from .forms import CustomUserCreationFrom  # Importando el formulario de registro de usuario
-from django.shortcuts import redirect  # Importando la función de redirección
-from django.contrib.auth import authenticate, login  # Importando funciones de autenticación
+from django.shortcuts import render, redirect
+from eventoAdmin.models import Evento  # Importando el modelo 'Evento' (asegúrate de que el import sea correcto)
+from django.contrib.auth.decorators import login_required
+from .forms import CustomUserCreationForm, PhotoForm  # Importando formularios
+from django.contrib.auth import authenticate, login  # Funciones de autenticación
 
 @login_required  # Decorador: Requiere que el usuario esté autenticado para acceder a esta vista
 def base(request):
+    """
+    Vista para la página base del sitio.
+    """
     return render(request, 'base.html')  # Renderiza la plantilla 'base.html'
 
-@login_required  # Decorador: Requiere que el usuario esté autenticado para acceder a esta vista
+@login_required
 def inicio(request):
+    """
+    Vista para la página de inicio del usuario autenticado.
+    Permite cambiar la foto de perfil del usuario.
+    """
+    user = request.user
     eventos = Evento.objects.all()  # Obtiene todos los eventos de la base de datos
-    totalReg = Evento.objects.latest('id')  # Obtiene el registro más reciente en la tabla 'Evento'
-    ultimo_id = totalReg.id  # Obtiene el ID del último registro
-    return render(request, 'inicio.html', {'eventos': eventos, 'total': ultimo_id})  # Renderiza la plantilla 'inicio.html' y pasa datos de eventos y el último ID como contexto
 
-def registro(request):  # Definición de una vista llamada 'registro' para el registro de usuarios
+    # Procesa el formulario de foto de perfil
+    if request.method == 'POST':
+        form = PhotoForm(request.POST, request.FILES, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('inicio')  # Redirige a la página de inicio después de guardar la foto
+
+    else:
+        form = PhotoForm(instance=user)  # Carga el formulario con la instancia del usuario actual
+
+    return render(request, 'inicio.html', {'eventos': eventos, 'form': form, 'user': user})
+
+def registro(request):
+    """
+    Vista para el registro de nuevos usuarios.
+    """
     data = {
-        'form': CustomUserCreationFrom()  # Inicializa un diccionario 'data' con un formulario de registro vacío
+        'form': CustomUserCreationForm()
     }
-    if request.method == 'POST':  # Comprueba si la solicitud HTTP es de tipo POST (envío de datos del formulario)
-        user_creation_form = CustomUserCreationFrom(data=request.POST)  # Crea una instancia del formulario con los datos POST
-        if user_creation_form.is_valid():  # Comprueba si el formulario es válido
-            user_creation_form.save()  # Guarda el nuevo usuario en la base de datos
-            user = authenticate(username=user_creation_form.cleaned_data['username'], password=user_creation_form.cleaned_data['password1'])
-            # Autentica al nuevo usuario
-            login(request, user)  # Inicia la sesión del usuario después del registro exitoso
-            return redirect('inicio')  # Redirige al usuario a la página 'inicio' después del registro exitoso
-    return render(request, 'register.html', data)  # Renderiza la página 'register.html' con el formulario (solicitud GET) o con errores de validación (solicitud POST)
+    if request.method == 'POST':
+        user_creation_form = CustomUserCreationForm(request.POST)
+        if user_creation_form.is_valid():
+            user = user_creation_form.save()  # Guarda el nuevo usuario en la base de datos
+            # Asigna los valores de los campos adicionales
+            user.telefono = user_creation_form.cleaned_data['telefono']
+            user.institucion = user_creation_form.cleaned_data['institucion']
+            user.save()  # Guarda los campos adicionales en el usuario
+            login(request, user)
+            return redirect('inicio')  # Redirige a la página de inicio después del registro exitoso
+
+    return render(request, 'register.html', data)

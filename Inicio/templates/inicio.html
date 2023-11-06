@@ -1,17 +1,66 @@
-{% extends "base.html" %} {% block content %} {% load static %}
-<!--Carga los estilos estaticos del css-->
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/inicio.css' %}"/>
+
 <div class="perfilCont">
-  <div>
-    <img class="imgUser" src="{% static 'img/user.webp' %}" alt="" />
-  </div>
-  <div class="infoCont">
-    <p>nombre de usuario : Nolger Rodriguez</p>
-    <p>Correo: nolgerlrodriguez@uniguajira.edu.co</p>
-    <p>Instituto: Universidad de la guajira</p>
-    <p>Numero de telefono: 3126613981</p>
-    <p>Eventos por asistir: 12</p>
-    <p>Eventos proximo: Retiro espiritual - 12 diciembre 2023 - 08:00 - Sara Molina</p>
-  </div>
+    <div class="imgCont">
+        <!-- Mostrar la foto de perfil del usuario -->
+        <img class="imgUser" src="{{ user.foto_de_perfil.url }}" alt="{{ user.username }}" />
+        
+        <!-- Botón para abrir el modal de cambio de foto de perfil -->
+        <button id="open-modal-btn" class="btnImgCamb">Cambiar foto de perfil</button>
+
+        <!-- Modal para cambiar la foto de perfil -->
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div class="modalForm">
+                    <!-- Formulario para cargar una nueva foto de perfil -->
+                    <form method="post" enctype="multipart/form-data" id="photo-form">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button class="btnImgCamb" type="submit">Guardar foto de perfil</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="infoCont">
+        <!-- Mostrar información del usuario -->
+        <p>Nombre de usuario: {{ user.username }}</p>
+        <p>Correo: {{ user.email }}</p>
+        <p>Institución: {{ user.institucion }}</p>
+        <p>Número de teléfono: {{ user.telefono }}</p>
+        <p>Eventos por asistir: {{ user.eventos_asistira.count }}</p>
+        <!-- Mostrar eventos próximos aquí -->
+    </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const openModalBtn = document.getElementById('open-modal-btn');
+    const modal = document.getElementById('modal');
+    const closeModalBtn = document.querySelector('.close');
+
+    // Abre el modal cuando se hace clic en el botón
+    openModalBtn.addEventListener('click', function() {
+        modal.style.display = 'block';
+    });
+
+    // Cierra el modal cuando se hace clic en la "x"
+    closeModalBtn.addEventListener('click', function() {
+        modal.style.display = 'none';
+    });
+
+    // Cierra el modal si el usuario hace clic fuera del contenido del modal
+    window.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+});
+</script>
 {% endblock %}

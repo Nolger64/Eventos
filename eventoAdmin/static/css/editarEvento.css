@@ -57,6 +57,7 @@ input{
   color: #fff;
 }
 p{
+    margin: 0.3em 0;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'eventoAdmin',
-    
 ]
 
 MIDDLEWARE = [
@@ -133,3 +132,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'inicio'
 LOGOUT_REDIRECT_URL = 'inicio'
+
+#Cambiando de auth para el customUser
+
+AUTH_USER_MODEL = 'Inicio.CustomUser'
+
+#Media 
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
