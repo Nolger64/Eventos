@@ -34,7 +34,7 @@
         <p>Correo: {{ user.email }}</p>
         <p>Institución: {{ user.institucion }}</p>
         <p>Número de teléfono: {{ user.telefono }}</p>
-        <p>Eventos por asistir: {{ user.eventos_asistira.count }}</p>
+        <p>Eventos por asistir: {{ user.eventos_asistira.all|length }}</p>
         <!-- Mostrar eventos próximos aquí -->
     </div>
 </div>

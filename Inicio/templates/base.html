@@ -17,7 +17,7 @@
           </div>
           <div class="contNavBtn">
             <li><a href="{% url 'lista_eventos' %}"> Lista de eventos</a></li>
-            <li><a href=""> Registros</a></li>
+            <li><a href="{% url 'por_asistir' %}">Mis eventos</a></li>
             {% if request.user.is_authenticated %}
             <li><a href="{% url 'logout' %}"> Cerrar Sesión</a></li>
             {% else %}

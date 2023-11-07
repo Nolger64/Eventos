@@ -8,6 +8,22 @@
     <p>Fecha: {{ evento.fecha|date:"d F Y" }}</p>
     <p>Hora: {{evento.hora}}</p>
     <p class="desc">Descripción: {{ evento.descripcion }}</p>
+    <div class="contBtn">
     <a class="btnPrincipal" href="{% url 'lista_eventos' %}">↩️ Volver</a>
+        {% if request.user.is_authenticated %}
+            {% if esta_asistiendo %}
+                <form action="{% url 'abandonar_evento' evento.id %}" method="post">
+                    {% csrf_token %}
+                    <button class="btnPrincipal" type="submit">🏃 Abandonar el evento</button>
+                </form>
+            {% else %}
+                <form action="{% url 'unirse_evento' evento.id %}" method="post">
+                    {% csrf_token %}
+                    <button class="btnPrincipal" type="submit">✔️ Unirse al evento</button>
+                </form>
+            {% endif %}
+        {% endif %}
+    </div>
 </div>
+    
 {% endblock %} <!--finaliza el bloque extendido -->

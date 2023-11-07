@@ -5,7 +5,7 @@ from .models import CustomUser  # Importando el modelo de usuario de Django
 class PhotoForm(forms.ModelForm):
     class Meta:
         model = CustomUser
-        fields = ['foto_de_perfil']
+        fields = ['foto_de_perfil'] # Campo para la foto
 
 class CustomUserCreationForm(UserCreationForm):
     telefono = forms.CharField(max_length=15, required=True)  # Campo para el número de teléfono

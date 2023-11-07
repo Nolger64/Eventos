@@ -11,6 +11,6 @@ class CustomUser(AbstractUser):
     user_permissions = models.ManyToManyField('auth.Permission', related_name='customuser_set')
 
 class Evento(models.Model):
-    nombre = models.CharField(max_length=100)
-    fecha = models.DateField()
-    ubicacion = models.CharField(max_length=100)
+    nombre = models.CharField(max_length=100) # Campo para el nombre
+    fecha = models.DateField() # Campo para la fecha 
+    ubicacion = models.CharField(max_length=100) # Campo para la ubicacion 

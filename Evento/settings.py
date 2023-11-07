@@ -137,7 +137,7 @@ LOGOUT_REDIRECT_URL = 'inicio'
 
 AUTH_USER_MODEL = 'Inicio.CustomUser'
 
-#Media 
+#Configurando la ruta de los archivos media
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

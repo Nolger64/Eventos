@@ -36,3 +36,8 @@
     border-radius: 0.5em;
     max-width: 25em;
 }
+.contBtn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

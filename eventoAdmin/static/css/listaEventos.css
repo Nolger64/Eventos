@@ -35,9 +35,11 @@
 .eventos{
     display: flex;
     justify-content: space-between;
-    margin: 1em 0;
+    align-items: center;
+    margin: 0.3em 1em;
 }
 .btnCrud{
+    font-size: 1em;
     margin: 0.5em 0.3em;
     width: auto;
     padding: 3px 5px;
@@ -46,6 +48,7 @@
     border: 1px solid #7B4AE2;
     border-radius: 5px;
     text-decoration: none;
+    cursor: pointer;
 }
 .btnCrud:hover{
     color: #fff;
@@ -60,8 +63,14 @@
     width: auto;
     text-decoration: none;
     transition: all .1s;
+    margin: 0.5em 0;
 }
 .btnAgregar:hover{
     color: #fff;
     transform: scale(1.1);
+}
+.btnCont{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

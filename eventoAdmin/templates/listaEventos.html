@@ -10,15 +10,20 @@
         {% for evento in eventos %}
         <li class="eventos">
           {{ evento.titulo }} - {{ evento.fecha|date:"d F Y" }} - {{evento.hora}} - {{ evento.nombre }} <!--los datos del evento-->
-          <div>
-            <a class="btnCrud" href="{% url 'eliminar_evento' evento.id %}">❌ Eliminar</a>
+          <div  class="btnCont">
+            {% if user.is_staff %}
+              <a class="btnCrud" href="{% url 'eliminar_evento' evento.id %}">❌ Eliminar</a>
+              <a class="btnCrud" href="{% url 'editar_evento' evento.id %}">✏️ Editar</a>
+            {% endif %}
             <a class="btnCrud" href="{% url 'detalle_evento' evento.id %}">🔍 Detalles</a>
-            <a class="btnCrud" href="{% url 'editar_evento' evento.id %}">✏️ Editar</a>
           </div>
         </li>
         {% endfor %}
       </ul>
+      {% if user.is_staff %}
       <a class="btnAgregar" href="{% url 'agregar_evento' %}">❇️ Agregar Evento</a>
+      {% endif %}
+      <a class="btnAgregar" href="">Mis Eventos</a>
     </div>
   </div>
 </body>
